@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
     height: 40,
     padding: 10,
     borderRadius: 5,
+    backgroundColor: "#eff1f3",
   },
   category: {
     flex: 1,

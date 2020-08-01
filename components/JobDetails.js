@@ -1,7 +1,7 @@
 import React from "react";
-import { StyleSheet, View, Button } from "react-native";
-import Card from "./DetailsCard";
-import CardItem from "./CardItem";
+import { StyleSheet, View, Button, Text } from "react-native";
+import InteriorDetails from "./InteriorDetails";
+import ExteriorDetails from "./ExteriorDetails";
 
 export default function JobDetails({ navigation }) {
   const builder = navigation.getParam("builder");
@@ -17,20 +17,72 @@ export default function JobDetails({ navigation }) {
   const accent = navigation.getParam("accent");
   const exteriorStain = navigation.getParam("exteriorStain");
 
+  const data = {
+    builder,
+    location,
+    startDate,
+    walls,
+    enamel,
+    interiorStain,
+    exteriorStain,
+    garage,
+    ceilings,
+    accent,
+    body,
+    trim,
+  };
+
   return (
-    <Card>
-      <CardItem category='Builder' data={builder} />
-      <CardItem category='Location' data={location} />
-      <CardItem category='Start Date' data={startDate} />
-      <CardItem category='Walls' data={walls} />
-      <CardItem category='Enamel' data={enamel} />
-      <CardItem category='Interior Stain' data={interiorStain} />
-      <CardItem category='Ceilings' data={ceilings} />
-      <CardItem category='Garage' data={garage} />
-      <CardItem category='Body' data={body} />
-      <CardItem category='Trim' data={trim} />
-      <CardItem category='Accent' data={accent} />
-      <CardItem category='Exterior Stain' data={exteriorStain} />
-    </Card>
+    <View style={styles.cardInfo}>
+      <View style={styles.siteInfo}>
+        <Text style={styles.siteInfoText}>{builder}</Text>
+        <View style={styles.siteInfoInner}>
+          <Text style={{ marginRight: 30 }}>{location}</Text>
+          <Text style={{ marginLeft: 20 }}>{startDate}</Text>
+        </View>
+      </View>
+      <View style={styles.colors}>
+        <InteriorDetails
+          data={{ walls, enamel, interiorStain, garage, ceilings }}
+        />
+        <ExteriorDetails data={{ body, trim, accent, exteriorStain }} />
+      </View>
+      <View style={styles.bottomSection}>
+        <Button
+          style={styles.editButton}
+          title='Edit Site Details'
+          color='#F5F3F5'
+        />
+      </View>
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  cardInfo: {
+    padding: 15,
+    backgroundColor: "#544E61",
+    flex: 1,
+  },
+  siteInfo: {
+    borderWidth: 1,
+    alignItems: "center",
+    padding: 10,
+    backgroundColor: "#F5F3F5",
+  },
+  siteInfoText: {
+    fontSize: 18,
+    padding: 5,
+  },
+  siteInfoInner: {
+    flexDirection: "row",
+    marginTop: 5,
+  },
+  colors: {
+    marginTop: 30,
+  },
+  bottomSection: {
+    flex: 1,
+    justifyContent: "flex-end",
+  },
+});

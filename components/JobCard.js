@@ -21,7 +21,15 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     minHeight: 50,
     padding: 10,
-    backgroundColor: "#C4CFD4",
+    backgroundColor: "#fff",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 9,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 12,
+    elevation: 19,
   },
   title: {
     flex: 1,

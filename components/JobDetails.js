@@ -1,7 +1,10 @@
 import React from "react";
 import { StyleSheet, View, Button, Text } from "react-native";
+import { Entypo } from "@expo/vector-icons";
 import InteriorDetails from "./InteriorDetails";
 import ExteriorDetails from "./ExteriorDetails";
+import Edit from "./EditButton";
+import { SafeAreaView } from "react-navigation";
 
 export default function JobDetails({ navigation }) {
   const builder = navigation.getParam("builder");
@@ -17,28 +20,13 @@ export default function JobDetails({ navigation }) {
   const accent = navigation.getParam("accent");
   const exteriorStain = navigation.getParam("exteriorStain");
 
-  const data = {
-    builder,
-    location,
-    startDate,
-    walls,
-    enamel,
-    interiorStain,
-    exteriorStain,
-    garage,
-    ceilings,
-    accent,
-    body,
-    trim,
-  };
-
   return (
-    <View style={styles.cardInfo}>
+    <SafeAreaView style={styles.cardInfo}>
       <View style={styles.siteInfo}>
         <Text style={styles.siteInfoText}>{builder}</Text>
         <View style={styles.siteInfoInner}>
-          <Text style={{ marginRight: 30 }}>{location}</Text>
-          <Text style={{ marginLeft: 20 }}>{startDate}</Text>
+          <Text style={{ flex: 1, textAlign: "center" }}>{location}</Text>
+          <Text style={{ flex: 1, textAlign: "center" }}>{startDate}</Text>
         </View>
       </View>
       <View style={styles.colors}>
@@ -48,27 +36,21 @@ export default function JobDetails({ navigation }) {
         <ExteriorDetails data={{ body, trim, accent, exteriorStain }} />
       </View>
       <View style={styles.bottomSection}>
-        <Button
-          style={styles.editButton}
-          title='Edit Site Details'
-          color='#F5F3F5'
-        />
+        <Edit name='edit' size={24} color='black' />
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   cardInfo: {
-    padding: 15,
-    backgroundColor: "#544E61",
+    backgroundColor: "#e9eef5",
     flex: 1,
   },
   siteInfo: {
-    borderWidth: 1,
     alignItems: "center",
     padding: 10,
-    backgroundColor: "#F5F3F5",
+    backgroundColor: "#eff1f3",
   },
   siteInfoText: {
     fontSize: 18,
@@ -80,9 +62,13 @@ const styles = StyleSheet.create({
   },
   colors: {
     marginTop: 30,
+    paddingLeft: 20,
+    paddingRight: 20,
   },
   bottomSection: {
-    flex: 1,
     justifyContent: "flex-end",
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "flex-end",
   },
 });

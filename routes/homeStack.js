@@ -8,23 +8,29 @@ import Search from "../components/Search";
 const screens = {
   Home: {
     screen: Home,
+    navigationOptions: {
+      title: "Matson Bros. Painting",
+    },
   },
   Search: {
     screen: Search,
   },
   JobDetails: {
     screen: JobDetails,
+    navigationOptions: {
+      headerBackTitle: "Back to Sites",
+      title: "Site Details",
+    },
   },
 };
 
 const Stack = createStackNavigator(screens, {
-  shifting: true,
-  labeled: false,
-  barStyle: {
-    height: 60,
-    borderTopColor: "#d5d6d4",
-    borderTopWidth: 1,
-    justifyContent: "center",
+  defaultNavigationOptions: {
+    headerTintColor: "#fff",
+
+    headerStyle: {
+      backgroundColor: "#3f86cc",
+    },
   },
 });
 

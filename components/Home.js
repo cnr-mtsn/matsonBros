@@ -15,9 +15,7 @@ import {
 import Card from "../components/JobCard";
 import NewSiteButton from "../components/AddNewButton";
 import NewSiteForm from "../components/NewSiteForm";
-import CloseButton from "../components/CloseButton";
-
-const backgroundUrl = "/assets/splash.png";
+import ModalHeader from "./ModalHeader";
 
 export default function Home({ navigation }) {
   const [jobs, setJobs] = useState([
@@ -160,7 +158,7 @@ export default function Home({ navigation }) {
         onRequestClose={updateModal}
       >
         <TouchableHighlight onPress={updateModal}>
-          <CloseButton />
+          <ModalHeader />
         </TouchableHighlight>
         <NewSiteForm />
       </Modal>
